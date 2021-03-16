@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title></title>
+  <style>
+  html, body { margin: 0; }
+  body { box-sizing: border-box; font-size: 18px; }
+  #app { padding-bottom: 80px;  }
+  .hide { display: none; }
+  label { display: block; font-size: 16px; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; }
+  input { font-size: 16px; width: 100%; }
+  .inputs { position: fixed; height: 80px; background: #fff; border-top: 1px solid #000; bottom: 0; left: 0; right: 0; }
+  #messages { padding: 1em; }
+  #messages > div {padding: 0.20em }
+  .inputs { display: flex; align-items: center; padding: 0 15px }
+  .inputs > span { padding: 0 15px; }
+  #message { flex-grow: 1; }
+  #room { flex-basis: 120px; }
+  #username { flex-basis: 210px }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="inputs">
+    <span id="room" class="input">
+      <label>Room</label>
+      <input id="input-room" placeholder="Room" />
+    </span>
+    <span id="username" class="input hide">
+      <label>Username</label>
+      <input id="input-username" placeholder="Username" />
+    </span>
+    <span id="message" class="input hide">
+      <label>Message</label>
+      <input id="input-message" placeholder="Message" />
+    </span>
+  </div>
+  <div id="messages"></div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
