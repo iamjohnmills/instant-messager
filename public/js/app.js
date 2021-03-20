@@ -24,8 +24,10 @@ const init = async () => {
     if(event.target.value.trim() === '') return;
     if(typeof username === 'undefined' || input_username.value !== username.username){
       await socket.emit('username', input_username.value, socket.io.engine.id);
+      await socket.emit('message', event.target.value, socket.io.engine.id);
+    } else {
+      await socket.emit('message', event.target.value, socket.io.engine.id);
     }
-    await socket.emit('message', event.target.value, socket.io.engine.id);
   })
 
   socket.on('me_fail_enter', function() {
