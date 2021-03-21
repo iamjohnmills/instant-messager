@@ -2,11 +2,20 @@
 const init = async () => {
   const socket = io();
 
-
+  let input_room_ui_state_0 = document.getElementById('input-room-ui-state-0');
+  input_room_ui_state_0.focus();
+  
   let input_room = document.getElementById('input-room');
   let input_username = document.getElementById('input-username');
   let input_message = document.getElementById('input-message');
 
+  input_room_ui_state_0.addEventListener('keyup', async (event) => {
+    const keyCode = event.code || event.key;
+    if(keyCode !== 'Enter') return;
+    document.getElementById('ui-state-0').classList.add('hide');
+    document.getElementById('ui-state-1').classList.remove('hide')
+    await socket.emit('enter',event.target.value,socket.id,socket.io.engine.id);
+  })
   input_room.addEventListener('keyup', async (event) => {
     const keyCode = event.code || event.key;
     if(keyCode !== 'Enter') return;
@@ -38,6 +47,7 @@ const init = async () => {
     writeMessage(`<i>You entered the room ${response.room.name}.</i>`);
     document.getElementById('username').classList.remove('hide');
     document.getElementById('message').classList.remove('hide');
+    input_room.value = response.room.name;
     input_username.value = socket.id;
     input_message.focus();
   });

@@ -2,39 +2,61 @@
 <head>
   <title></title>
   <style>
-  html, body { margin: 0; }
+  html, body { margin: 0; font-family: Avenir }
   body { box-sizing: border-box; font-size: 18px; }
-  #app { padding-bottom: 80px;  }
-  .hide { display: none; }
-  label { display: block; font-size: 16px; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; }
-  input { font-size: 16px; width: 100%; }
-  .inputs { position: fixed; height: 80px; background: #fff; border-top: 1px solid #000; bottom: 0; left: 0; right: 0; }
+  #app { padding-bottom: 230px;  }
+  .hide { display: none !important; }
+  label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; }
+  input { font-size: 16px; width: 100%; padding: 4px; border: 1px solid #ccc; border-radius: 4px;}
+  .inputs { position: fixed; height: 230px; padding: 0 15px; background: #fff; border-top: 1px solid #ccc; bottom: 0; left: 0; right: 0; }
   #messages { padding: 1em; }
   #messages > div {padding: 0.20em }
-  .inputs { display: flex; align-items: center; padding: 0 15px }
   .inputs > span { padding: 0 15px; }
-  #message { flex-grow: 1; }
-  #room { flex-basis: 120px; }
-  #username { flex-basis: 210px }
+  #message { display: block; margin: 1em 0; }
+  #room { display: block; margin: 1em 0; }
+  #username { display: block; margin: 1em 0;}
+
+  #ui-state-0 { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: #fff; z-index: 1; display: flex; align-items: center; justify-content: center; }
+  #ui-state-0 > div { margin-top: -80px; }
+  #ui-state-0 input { padding: 10px; }
+
+  @media only screen and (min-width: 800px) {
+    #app { padding-bottom: 100px;  }
+    .inputs { position: fixed; height: 100px; display: flex; align-items: center;  }
+    #message { flex-grow: 1; margin: 0 }
+    #room { flex-basis: 120px; margin: 0 }
+    #username { flex-basis: 210px; margin: 0 }
+
+  }
+
+
   </style>
 </head>
 <body>
 <div id="app">
-  <div class="inputs">
-    <span id="room" class="input">
-      <label>Room</label>
-      <input id="input-room" placeholder="Room" />
-    </span>
-    <span id="username" class="input hide">
-      <label>Username</label>
-      <input id="input-username" placeholder="Username" />
-    </span>
-    <span id="message" class="input hide">
-      <label>Message</label>
-      <input id="input-message" placeholder="Message" />
-    </span>
+  <div id="ui-state-0">
+    <div>
+      <h2>Create or Join a Room</h2>
+      <input id="input-room-ui-state-0" />
+    </div>
   </div>
-  <div id="messages"></div>
+  <div id="ui-state-1" class="hide">
+    <div id="messages"></div>
+    <div class="inputs">
+      <span id="room" class="input">
+        <label>Room</label>
+        <input id="input-room" placeholder="Room" />
+      </span>
+      <span id="username" class="input hide">
+        <label>Username</label>
+        <input id="input-username" placeholder="Username" />
+      </span>
+      <span id="message" class="input hide">
+        <label>Message</label>
+        <input id="input-message" placeholder="Message" />
+      </span>
+    </div>
+  </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/app.js"></script>
