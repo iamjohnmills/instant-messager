@@ -84,9 +84,14 @@ const init = async () => {
     writeMessage(`<i>${response.client.username} left the room.</i>`);
   });
   socket.on('disconnect', function(response) {
+    writeMessage(`<i>You were disconnected from the room.</i>`);
+    //document.getElementById('ui-state-0').classList.remove('hide');
+    //document.getElementById('ui-state-1').classList.add('hide')
+    //input_room_ui_state_0.value = null;
     input_room.value = null;
     input_username.value = null;
     input_message.value = null;
+    //input_room_ui_state_0.focus();
   });
   const writeMessage = (message) => {
     const el = document.createElement('div');
