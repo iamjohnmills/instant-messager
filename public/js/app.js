@@ -93,6 +93,7 @@ const init = async () => {
     input_room.value = null;
     input_username.value = null;
     input_message.value = null;
+    input_room.focus();
   });
   const writeMessage = (message) => {
     const el = document.createElement('div');
